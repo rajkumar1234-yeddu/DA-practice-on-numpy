@@ -1,0 +1,248 @@
+NumPY
+1.	Down load the dataset winequality-red.csv file( each column is separated by a semicolon (;)) from the UCI Machine Learning Repository
+2.	Convert it to numPy array, name it as wines (leave the first row of the list) and specify the data type of array as float.
+3.	Identify the shape of the array.
+4.	Display the element at row 3 and column 4.
+5.	 Display the first three items from the fourth column.
+6.	Display third column from each row.
+7.	Display fourth row.
+8.	Assign value 10 to 2nd row and 6th column element.
+9.	Take the 10th column from wines array and name that slice as slice_new and assign value 666 to all elements of slice_new.
+10.	Display wines array.
+11.	Find the data type of wines array and Change the data type to int.
+12.	Add 10 points to each quality score.
+13.	Find the sum of all the elements in an array
+14.	Find the sum of all the values in every column.
+15.	Find the sum of all the values in every row.
+16.	Add the quality column to itself.
+17.	Multiply alcohol by quality.
+18.	Display which wines have a quality rating higher than 5.
+19.	Check if any wines have a quality rating equal to 10.
+20.	Select rows in wines where the quality is over 7
+21.	Display wines with alcohol greater than 10 and quality greater than 7.
+22.	Change the shape of wines array.
+
+
+codes and outputs:
+
+2.
+wines=np.genfromtxt("C:/Users/exam2/Downloads/winequality-red.csv",delimiter=";",skip_header=1,dtype=float)
+print(wines)
+output:
+[[ 7.4    0.7    0.    ...  0.56   9.4    5.   ]
+ [ 7.8    0.88   0.    ...  0.68   9.8    5.   ]
+ [ 7.8    0.76   0.04  ...  0.65   9.8    5.   ]
+ ...
+ [ 6.3    0.51   0.13  ...  0.75  11.     6.   ]
+ [ 5.9    0.645  0.12  ...  0.71  10.2    5.   ]
+ [ 6.     0.31   0.47  ...  0.66  11.     6.   ]]
+ 
+ 
+ 3.
+ wines.shape
+ output:
+ (1599, 12)
+ 
+ 
+ 4.
+ wines[2][3]
+ output:
+ 2.3
+ 
+ 
+ 5.
+ wines[:3,[3]]
+ output:
+ array([[1.9],
+       [2.6],
+       [2.3]])
+       
+ 
+ 6.
+ wines[:,2]
+ output:
+ array([0.  , 0.  , 0.04, ..., 0.13, 0.12, 0.47])
+ 
+ 
+ 
+ 7.
+ wines[3]
+ output:
+ array([11.2  ,  0.28 ,  0.56 ,  1.9  ,  0.075, 17.   , 60.   ,  0.998,
+        3.16 ,  0.58 ,  9.8  ,  6.   ]
+ 
+ 
+ 
+ 8.
+ wines[1][5]=10
+ wines[1,5]
+ output:
+ 10
+ 
+ 
+ 
+ 9.
+slice_new=wines[:,9]
+slice_new[:]=666
+print(slice_new)
+output:
+[666. 666. 666. ... 666. 666. 666.]
+
+
+
+10.
+wines
+output:
+
+array([[7.40e+00, 7.00e-01, 0.00e+00, ..., 6.66e+02, 9.40e+00, 5.00e+00],
+       [7.80e+00, 8.80e-01, 0.00e+00, ..., 6.66e+02, 9.80e+00, 5.00e+00],
+       [7.80e+00, 7.60e-01, 4.00e-02, ..., 6.66e+02, 9.80e+00, 5.00e+00],
+       ...,
+       [6.30e+00, 5.10e-01, 1.30e-01, ..., 6.66e+02, 1.10e+01, 6.00e+00],
+       [5.90e+00, 6.45e-01, 1.20e-01, ..., 6.66e+02, 1.02e+01, 5.00e+00],
+       [6.00e+00, 3.10e-01, 4.70e-01, ..., 6.66e+02, 1.10e+01, 6.00e+00]])
+       
+       
+
+11.
+wines.dtype
+wines=wines.astype('int64')
+wines.dtype
+output:
+dtype('float64')
+dtype('int64')
+
+
+
+
+
+
+12.
+wines[:,-1]+=10
+wines[:,-1]
+output:
+array([15, 15, 15, ..., 16, 15, 16], dtype=int64)
+
+
+
+
+13.
+wines.sum()
+output:
+1226388
+
+
+
+14.
+print("Sum of each column:")
+print(np.sum(wines, axis=0))
+output:
+Sum of each column:
+[  12589      24       1    3350       0   25367   74301      81    4770
+ 1064934   15969   25002]
+ 
+ 
+ 
+15.
+print("Sum of each row:")
+print(np.sum(wines, axis=1))
+output:
+Sum of each row:
+[746 779 771 ... 773 777 765]
+
+
+
+16.
+wines[:,-1]+=wines[:,-1]
+wines[:,-1]
+output:
+array([30, 30, 30, ..., 32, 30, 32], dtype=int64)
+
+
+17.
+wines[:,-2]*wines[:,-1]
+output:
+array([270, 270, 270, ..., 352, 300, 352], dtype=int64)
+
+
+
+18.
+print(wines[wines[:,-1] > 5])
+output:
+[[11  0  0 ...  0  9  6]
+ [ 7  0  0 ...  0 10  7]
+ [ 7  0  0 ...  0  9  7]
+ ...
+ [ 5  0  0 ...  0 11  6]
+ [ 6  0  0 ...  0 11  6]
+ [ 6  0  0 ...  0 11  6]]
+ 
+ 
+
+19.
+print(wines[:,-1]==10)
+output:
+[False False False ... False False False]
+
+
+
+
+20.
+print(wines[wines[:,-1] > 7])
+output:
+[[ 7  0  0  3  0 15 37  0  3  0 12  8]
+ [10  0  0  6  0  5 13  0  3  0 12  8]
+ [ 5  0  0  1  0 12 88  0  3  0 12  8]
+ [12  0  0  2  0  6 29  0  2  0  9  8]
+ [11  0  0  5  0  6 19  0  3  0 13  8]
+ [ 9  0  0  2  0  6 17  0  3  0 11  8]
+ [10  0  0  2  0  5 16  0  3  0 11  8]
+ [10  0  0  2  0  5 16  0  3  0 11  8]
+ [ 5  0  0  2  0 19 50  0  3  0 14  8]
+ [ 7  0  0  2  0 34 45  0  3  0 12  8]
+ [ 9  0  0  1  0  7 16  0  3  0 12  8]
+ [10  0  0  1  0 42 74  0  2  0 11  8]
+ [ 7  0  0  2  0  8 17  0  3  0 13  8]
+ [ 8  0  0  1  0  6 12  0  3  0 11  8]
+ [ 5  0  0  1  0 28 87  0  3  0 14  8]
+ [ 7  0  0  1  0  3 13  0  3  1 10  8]
+ [ 7  0  0  2  0 15 29  0  3  0 11  8]
+ [ 7  0  0  1  0 17 24  0  3  0 11  8]]
+ 
+ 
+ 
+ 
+ 21.
+ wines[(wines[:,-2]>10) & (wines[:,-1]>7)]
+ output:
+ array([[ 7,  0,  0,  3,  0, 15, 37,  0,  3,  0, 12,  8],
+       [10,  0,  0,  6,  0,  5, 13,  0,  3,  0, 12,  8],
+       [ 5,  0,  0,  1,  0, 12, 88,  0,  3,  0, 12,  8],
+       [11,  0,  0,  5,  0,  6, 19,  0,  3,  0, 13,  8],
+       [ 9,  0,  0,  2,  0,  6, 17,  0,  3,  0, 11,  8],
+       [10,  0,  0,  2,  0,  5, 16,  0,  3,  0, 11,  8],
+       [10,  0,  0,  2,  0,  5, 16,  0,  3,  0, 11,  8],
+       [ 5,  0,  0,  2,  0, 19, 50,  0,  3,  0, 14,  8],
+       [ 7,  0,  0,  2,  0, 34, 45,  0,  3,  0, 12,  8],
+       [ 9,  0,  0,  1,  0,  7, 16,  0,  3,  0, 12,  8],
+       [10,  0,  0,  1,  0, 42, 74,  0,  2,  0, 11,  8],
+       [ 7,  0,  0,  2,  0,  8, 17,  0,  3,  0, 13,  8],
+       [ 8,  0,  0,  1,  0,  6, 12,  0,  3,  0, 11,  8],
+       [ 5,  0,  0,  1,  0, 28, 87,  0,  3,  0, 14,  8],
+       [ 7,  0,  0,  2,  0, 15, 29,  0,  3,  0, 11,  8],
+       [ 7,  0,  0,  1,  0, 17, 24,  0,  3,  0, 11,  8]], dtype=int64)
+
+
+
+
+22.
+wines=wines.reshape((533,36))
+wines.shape
+(533, 36)
+
+
+
+
+ 
+ 
+ 
